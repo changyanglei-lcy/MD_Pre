@@ -1,0 +1,16 @@
+; 能量最小化参数
+integrator  = steep         ; 最抖下降法（适合初步结构优化，稳定但较慢）
+emtol       = 100.0        ; 最大力收敛阈值（Amber推荐≤10.0 kJ/mol/nm）
+emstep        = 0.01
+nsteps      = 50000         ; 最大优化步数（确保足够步数以达到emtol）
+; 非键相互作用参数
+cutoff-scheme   = Verlet    ; Verlet截断方案（自动管理邻居列表，推荐）
+nstlist         = 10         ;  邻居列表更新频率
+rlist		    = 1.0       ; 邻居列表截断半径（必须≥rvdw/rcoulomb）
+vdwtype     =  Cut-off
+rvdw            = 1.0       ; 范德华截断半径
+coulombtype     = PME       ; PME处理长程静电
+rcoulomb        = 1.0       ; 直接空间静电截断（与rvdw对齐）
+; 约束算法
+constraints      = h-bonds  ; 仅约束氢键（Amber力场参数化基于此设置）
+constraint_algorithm  =  LINCS   ;  LINCS算法

@@ -1,0 +1,42 @@
+; 运行参数
+integrator        = md
+dt                = 0.002           ; 2 fs
+nsteps            = 1000000          ; 2000 ps
+
+; 输出控制
+nstxout           = 5000            ; 每 5 ps 输出坐标（可视化用）
+nstvout           = 5000
+nstfout           = 5000
+nstlog            = 1000            ; 每 1 ps 写日志
+nstenergy         = 1000            ; 每 1 ps 写能量
+nstcalcenergy     = 100             ; 每 0.1 ps 计算能量
+
+; 非键相互作用
+cutoff-scheme     = Verlet
+nstlist           = 10
+rlist             = 1.0
+coulombtype       = PME
+rcoulomb          = 1.0
+vdwtype           = Cut-off
+vdw-modifier      = None
+rvdw              = 1.0
+
+; 温度控制（重点）
+tcoupl            = V-rescale
+tc-grps           = complex Water  ; 必须与你的 index.ndx 中分组一致
+tau_t             = 0.1     0.1
+ref_t             = 300     300              ; 请注意单位是 K，不是 310 K
+
+; 约束设置
+constraints              = h-bonds
+constraint_algorithm     = LINCS
+
+; 质心运动移除
+nstcomm           = 100
+comm_mode         = Linear
+comm-grps         = complex Water
+
+; 初始速度
+gen_vel           = yes
+gen_temp          = 300
+gen_seed          = -1

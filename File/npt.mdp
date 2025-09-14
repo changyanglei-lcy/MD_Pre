@@ -1,0 +1,42 @@
+; 运行参数
+integrator        = md
+dt                = 0.002
+nsteps            = 1000000
+; 输出设置
+nstxout           = 10000           ; 每 10 ps 输出坐标
+nstvout           = 10000
+nstfout           = 10000
+nstlog            = 1000            ; 每 2 ps 日志
+nstenergy         = 1000            ; 每 2 ps 能量
+nstcalcenergy     = 100             ; 每 0.1 ps 计算能量
+
+; 非键相互作用
+cutoff-scheme     = Verlet
+nstlist           = 10
+rlist             = 1.0
+coulombtype       = PME
+rcoulomb          = 1.0
+vdwtype           = Cut-off
+vdw-modifier      = None
+rvdw              = 1.0
+
+; 温度耦合
+tcoupl            = V-rescale
+tc-grps           = complex Water
+tau_t             = 0.1   0.1
+ref_t             = 300   300
+
+; 压力耦合
+pcoupl            = C-rescale
+pcoupltype        = isotropic
+ref_p             = 1.0
+compressibility   = 4.5e-5
+
+; 约束
+constraints              = h-bonds
+constraint_algorithm     = LINCS
+
+; 质心运动
+nstcomm           = 100
+comm_mode         = linear
+comm_grps         = complex Water

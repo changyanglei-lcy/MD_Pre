@@ -1,0 +1,48 @@
+; Run control
+integrator              = md
+dt                      = 0.002
+nsteps                  = 50000000     ; 100 ns
+
+; Output control
+nstxout                 = 0            ; 不输出trr，节省空间
+nstvout                 = 0
+nstfout                 = 0
+nstxout-compressed      = 50000        ; 每100 ps输出xtc
+compressed-x-precision  = 1000
+compressed-x-grps       = System
+nstcalcenergy           = 100
+nstenergy               = 5000         ; 每10 ps能量
+nstlog                  = 5000         ; 每10 ps日志
+
+; Nonbonded interactions
+cutoff-scheme           = Verlet
+nstlist                 = 10
+rlist                   = 1.0
+coulombtype             = PME
+rcoulomb                = 1.0
+vdwtype                 = Cut-off
+vdw-modifier            = None
+rvdw                    = 1.0
+
+; Temperature coupling
+tcoupl                  = Nose-Hoover
+tc-grps                 = complex Water
+tau_t                   = 1.0   1.0
+ref_t                   = 300   300
+
+; Pressure coupling
+pcoupl                  = Parrinello-Rahman
+pcoupltype              = isotropic
+ref_p                   = 1.0
+tau_p                   = 5.0
+compressibility         = 4.5e-5
+
+; Constraints
+constraints             = h-bonds
+constraint_algorithm    = LINCS
+continuation            = yes
+
+; Center of mass motion
+nstcomm                 = 100
+comm_mode               = linear
+comm_grps               = complex Water

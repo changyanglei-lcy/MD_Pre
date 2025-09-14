@@ -1,0 +1,22 @@
+; ========== 力场定义 ==========
+#include "amber99sb.ff/forcefield.itp"
+
+; ========== 小分子所需 GAFF 原子类型（含 [atomtypes]）==========
+#include "MOA_GMX_prm.itp"
+#include "MOB_GMX_prm.itp"
+
+; ========== 小分子拓扑结构（含 [moleculetype]）==========
+#include "MOA_GMX.itp"
+#include "MOB_GMX.itp"
+
+; ========== 水模型 + 离子 ==========
+#include "amber99sb.ff/tip3p.itp"
+#include "amber99sb.ff/ions.itp"
+
+[ system ]
+MOA MOB in water
+
+[ molecules ]
+MOA   10
+MOB    10
+
