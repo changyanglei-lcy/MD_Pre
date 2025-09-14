@@ -18,8 +18,7 @@
 
 ```
 MD_Pre/
-├── README.md                     # 项目说明文档
-├── CLAUDE.md                    # Claude Code项目配置
+├── README.md                     # 项目说明文档                   # Claude Code项目配置
 ├── Mol.csv                      # 样本清单文件
 ├── replace_resname.py           # 残基重命名脚本
 ├── main.py                      # 主处理脚本
